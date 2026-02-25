@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Escape</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <main class="game-shell">
+      <header class="top-bar">
+        <div class="brand">
+          <h1>CODE ESCAPE</h1>
+          <p>Escape room digital para aprender programação</p>
+        </div>
+        <div class="stats" aria-live="polite">
+          <div class="stat-card"><span>Nível</span><strong id="levelNumber">1</strong></div>
+          <div class="stat-card"><span>Tempo</span><strong id="timer">90s</strong></div>
+          <div class="stat-card"><span>Pontuação</span><strong id="score">0</strong></div>
+        </div>
+      </header>
+
+      <section class="room-scene">
+        <article class="mascot-panel">
+          <div class="mascot" role="img" aria-label="Leão estilizado com coroa, mascote do jogo">
+            <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="mane" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#8b2f1f" />
+                  <stop offset="100%" stop-color="#5f1c13" />
+                </linearGradient>
+                <linearGradient id="fur" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#f9cc49" />
+                  <stop offset="100%" stop-color="#e8ad2e" />
+                </linearGradient>
+              </defs>
+              <g>
+                <polygon points="85,35 110,15 130,35 150,15 175,35 170,55 90,55" fill="#f4d35e" stroke="#8b5d10" stroke-width="4" />
+                <circle cx="110" cy="30" r="5" fill="#b22222" />
+                <circle cx="130" cy="23" r="5" fill="#b22222" />
+                <circle cx="150" cy="30" r="5" fill="#b22222" />
+              </g>
+              <circle cx="130" cy="140" r="95" fill="url(#mane)" />
+              <circle cx="130" cy="140" r="66" fill="url(#fur)" />
+              <circle cx="104" cy="126" r="10" fill="#3a2314" />
+              <circle cx="156" cy="126" r="10" fill="#3a2314" />
+              <ellipse cx="130" cy="155" rx="20" ry="16" fill="#f4e4b5" />
+              <polygon points="130,145 120,158 140,158" fill="#7b2d1c" />
+              <path d="M115 172 Q130 184 145 172" stroke="#7b2d1c" stroke-width="4" fill="none" stroke-linecap="round" />
+              <path d="M88 154 Q67 150 48 158" stroke="#f2c14e" stroke-width="4" fill="none" stroke-linecap="round" />
+              <path d="M172 154 Q193 150 212 158" stroke="#f2c14e" stroke-width="4" fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h2>Leo, o Mentor</h2>
+          <p id="mascotSpeech">Bem-vindo, programador! Resolva o código para abrir a primeira porta.</p>
+          <div class="mascot-buttons">
+            <button id="hintBtn" class="btn secondary">Pedir dica (-12s)</button>
+            <button id="startBtn" class="btn primary">Iniciar desafio</button>
+          </div>
+        </article>
+
+        <article class="challenge-panel">
+          <div class="door-wrap" aria-hidden="true">
+            <div class="door" id="doorVisual">
+              <span id="doorState">TRANCADA</span>
+            </div>
+          </div>
+
+          <div class="challenge-box">
+            <h3 id="challengeTitle">Sala 1: Variáveis</h3>
+            <p id="challengePrompt">Clique em “Iniciar desafio” para começar o cronômetro.</p>
+            <pre id="codeSnippet" class="code-snippet"></pre>
+            <form id="answerForm" class="answers"></form>
+            <div class="actions">
+              <button id="submitBtn" class="btn primary" disabled>Destravar porta</button>
+              <button id="skipBtn" class="btn danger" disabled>Reiniciar nível</button>
+            </div>
+            <p class="feedback" id="feedback" aria-live="polite"></p>
+          </div>
+        </article>
+      </section>
+
+      <section class="legend">
+        <h4>Como pontuar</h4>
+        <ul>
+          <li>+ Tempo restante x 5</li>
+          <li>+ Bônus por acertar de primeira</li>
+          <li>- Penalidade por erro e por dica</li>
+        </ul>
+      </section>
+    </main>
+
+    <div id="finalModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+      <div class="modal-content">
+        <h2 id="finalTitle">Parabéns, você escapou!</h2>
+        <p id="finalText"></p>
+        <button id="restartGame" class="btn primary">Jogar novamente</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
